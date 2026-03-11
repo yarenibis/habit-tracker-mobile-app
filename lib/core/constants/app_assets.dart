@@ -21,9 +21,4 @@ class AppAssets {
 
   // ── Add habit arka planı ───────────────────────────────────────────────────
   static const String bgAddHabit = 'assets/images/ui/sakura_bg.jpg';
-
-  // ── Navigasyon ─────────────────────────────────────────────────────────────
-  static const String navHome = 'assets/images/nav/home.png';
-  static const String navProgress = 'assets/images/nav/progress.png';
-  static const String navProfile = 'assets/images/nav/profile.png';
 }

@@ -187,8 +187,8 @@ class PixelAddButton extends StatelessWidget {
       onTap: onTap,
       child: Image.asset(
         AppAssets.btnAdd,
-        width: 60,
-        height: 60,
+        width: 64,
+        height: 64,
         fit: BoxFit.contain,
         filterQuality: FilterQuality.none,
         errorBuilder: (_, __, ___) => Container(
@@ -226,62 +226,37 @@ class PixelSceneCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.fromLTRB(16, 16, 16, 12),
       decoration: BoxDecoration(
-        color: const Color(0xFFD6EFFF).withOpacity(0.95),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFF5A9FD4), width: 3),
-        boxShadow: const [
-          BoxShadow(
-              color: Color(0xFF3A7FB0), offset: Offset(4, 4), blurRadius: 0),
-        ],
+        color: Colors.white.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(5),
-        child: Column(
-          children: [
-            // Başlık şeridi
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              color: const Color(0xFF5A9FD4).withOpacity(0.2),
-              child: const Text(
-                '✦ BUGÜNKÜ DÜNYA ✦',
+      child: Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 1.2,
+            child: Image.asset(
+              assetPath,
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.none,
+              errorBuilder: (_, __, ___) => const Center(
+                child: Text('🎮', style: TextStyle(fontSize: 64)),
+              ),
+            ),
+          ),
+          if (description.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Text(
+                description,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: 'PixelFont',
-                  fontSize: 8,
-                  color: Color(0xFF5A9FD4),
-                  letterSpacing: 1.5,
+                  fontFamily: 'SoftPixel',
+                  fontSize: 13,
+                  color: Colors.white.withOpacity(0.9),
                 ),
               ),
             ),
-            AspectRatio(
-              aspectRatio: 1.2,
-              child: Image.asset(
-                assetPath,
-                fit: BoxFit.contain,
-                filterQuality: FilterQuality.none,
-                errorBuilder: (_, __, ___) => const Center(
-                  child: Text('🎮', style: TextStyle(fontSize: 64)),
-                ),
-              ),
-            ),
-            if (description.isNotEmpty)
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 6),
-                color: const Color(0xFF5A9FD4).withOpacity(0.3),
-                child: Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontFamily: 'SoftPixel',
-                    fontSize: 13,
-                    color: Color(0xFF1A3A5C),
-                  ),
-                ),
-              ),
-          ],
-        ),
+        ],
       ),
     ).animate().fadeIn(duration: 500.ms);
   }

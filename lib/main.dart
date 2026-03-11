@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pixel_habit_tracker/core/constants/app_assets.dart';
 import 'package:pixel_habit_tracker/core/theme/app_theme.dart';
 import 'package:pixel_habit_tracker/presentation/pages/home/home_page.dart';
 import 'package:pixel_habit_tracker/presentation/pages/progress/progress_page.dart';
@@ -85,25 +84,25 @@ class _PixelBottomNav extends StatelessWidget {
           child: Row(
             children: [
               _NavItem(
-                  assetPath: AppAssets.navHome,
-                  label: 'HOME',
-                  index: 0,
-                  currentIndex: currentIndex,
-                  onTap: onTap),
+                label: 'HOME',
+                index: 0,
+                currentIndex: currentIndex,
+                onTap: onTap,
+              ),
               _Divider(),
               _NavItem(
-                  assetPath: AppAssets.navProgress,
-                  label: 'PROGRESS',
-                  index: 1,
-                  currentIndex: currentIndex,
-                  onTap: onTap),
+                label: 'PROGRESS',
+                index: 1,
+                currentIndex: currentIndex,
+                onTap: onTap,
+              ),
               _Divider(),
               _NavItem(
-                  assetPath: AppAssets.navProfile,
-                  label: 'PROFILE',
-                  index: 2,
-                  currentIndex: currentIndex,
-                  onTap: onTap),
+                label: 'PROFILE',
+                index: 2,
+                currentIndex: currentIndex,
+                onTap: onTap,
+              ),
             ],
           ),
         ),
@@ -113,6 +112,8 @@ class _PixelBottomNav extends StatelessWidget {
 }
 
 class _Divider extends StatelessWidget {
+  const _Divider();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -121,12 +122,11 @@ class _Divider extends StatelessWidget {
 }
 
 class _NavItem extends StatelessWidget {
-  final String assetPath, label;
+  final String label;
   final int index, currentIndex;
   final ValueChanged<int> onTap;
 
   const _NavItem({
-    required this.assetPath,
     required this.label,
     required this.index,
     required this.currentIndex,
@@ -145,37 +145,18 @@ class _NavItem extends StatelessWidget {
           color: isSelected
               ? const Color(0xFF5A9FD4).withOpacity(0.15)
               : Colors.transparent,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                assetPath,
-                width: isSelected ? 26 : 22,
-                height: isSelected ? 26 : 22,
-                filterQuality: FilterQuality.none,
+          child: Center(
+            child: Text(
+              label,
+              style: TextStyle(
+                fontFamily: 'PixelFont',
+                fontSize: 7,
+                letterSpacing: 0.5,
                 color: isSelected
                     ? PixelColors.yellow
                     : Colors.white.withOpacity(0.4),
-                colorBlendMode: BlendMode.srcIn,
-                errorBuilder: (_, __, ___) => Icon(
-                  Icons.star,
-                  size: isSelected ? 26 : 22,
-                  color: isSelected ? PixelColors.yellow : Colors.white38,
-                ),
               ),
-              const SizedBox(height: 3),
-              Text(
-                label,
-                style: TextStyle(
-                  fontFamily: 'PixelFont',
-                  fontSize: 5,
-                  letterSpacing: 0.5,
-                  color: isSelected
-                      ? PixelColors.yellow
-                      : Colors.white.withOpacity(0.4),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

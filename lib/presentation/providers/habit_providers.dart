@@ -28,7 +28,9 @@ final habitsProvider = StreamProvider<List<Habit>>((ref) {
 
 // ── Bugünkü tamamlamalar ──────────────────────────────────────────────────────
 final todayCompletionsProvider = StreamProvider<List<HabitCompletion>>((ref) {
-  return ref.watch(habitRepositoryProvider).watchCompletionsForDate(DateTime.now());
+  return ref
+      .watch(habitRepositoryProvider)
+      .watchCompletionsForDate(DateTime.now());
 });
 
 // ── Tüm habitler bugün tamamlandı mı? ────────────────────────────────────────
@@ -56,7 +58,9 @@ final dailyProgressProvider = Provider<double>((ref) {
 final streakProvider = FutureProvider<int>((ref) async {
   // todayCompletionsProvider'ı izle → değişince bu provider da yeniden çalışır
   ref.watch(todayCompletionsProvider);
-  return ref.read(habitRepositoryProvider).getConsecutiveFullDays(lookbackDays: 60);
+  return ref
+      .read(habitRepositoryProvider)
+      .getConsecutiveFullDays(lookbackDays: 60);
 });
 
 // ── Mevcut sahne ──────────────────────────────────────────────────────────────
@@ -72,7 +76,8 @@ final isHabitCompletedProvider = Provider.family<bool, String>((ref, habitId) {
 });
 
 // ── Completion ID'si (unmark için) ───────────────────────────────────────────
-final habitCompletionIdProvider = Provider.family<String?, String>((ref, habitId) {
+final habitCompletionIdProvider =
+    Provider.family<String?, String>((ref, habitId) {
   final completions = ref.watch(todayCompletionsProvider).valueOrNull ?? [];
   try {
     return completions.firstWhere((c) => c.habitId == habitId).id;
@@ -122,6 +127,10 @@ Future<void> addHabit(
     createdAt: DateTime.now(),
     iconAsset: emoji,
   ));
+}
+
+Future<void> updateHabit(WidgetRef ref, Habit habit) async {
+  await ref.read(habitRepositoryProvider).updateHabit(habit);
 }
 
 /// Habit sil

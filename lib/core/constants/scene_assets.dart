@@ -14,18 +14,18 @@
 // Birden fazla sahne tipi ekleyebilirsin (bahçe, şehir, orman, vb.)
 
 enum SceneType {
-  fountain,  // Çeşme (resimde görülen)
-  garden,    // Bahçe
-  town,      // Kasaba
-  forest,    // Orman
+  fountain, // Çeşme (resimde görülen)
+  garden, // Bahçe
+  town, // Kasaba
+  forest, // Orman
   // Yeni sahne tipleri buraya eklenebilir
 }
 
 class SceneLevel {
-  final int level;           // 0 = başlangıç, arttıkça daha güzel
+  final int level; // 0 = başlangıç, arttıkça daha güzel
   final String assetPath;
-  final String description;  // Kullanıcıya gösterilecek açıklama
-  final int requiredStreak;  // Kaç günlük streak gerekli
+  final String description; // Kullanıcıya gösterilecek açıklama
+  final int requiredStreak; // Kaç günlük streak gerekli
 
   const SceneLevel({
     required this.level,
@@ -41,7 +41,7 @@ class SceneAssets {
     SceneType.fountain: [
       SceneLevel(
         level: 0,
-        assetPath: 'assets/images/scenes/fountain.png',
+        assetPath: 'assets/images/scenes/magical-tree.png',
         description: 'Terk edilmiş çeşme...',
         requiredStreak: 0,
       ),
@@ -49,7 +49,7 @@ class SceneAssets {
         level: 1,
         assetPath: 'assets/images/scenes/fish.png',
         description: 'Çeşme akmaya başladı!',
-        requiredStreak: 3,
+        requiredStreak: 1,
       ),
       SceneLevel(
         level: 2,
